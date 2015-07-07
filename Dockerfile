@@ -60,6 +60,6 @@ EXPOSE 3000
 ONBUILD ADD Gemfile* /app/
 ONBUILD RUN BUNDLE_JOBS=$(cat /proc/cpuinfo | grep cores | cut -d':' -f2 | head -n1 | xargs expr -1 +) bundle install
 ONBUILD ADD . /app/
-ONBUILD RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 ONBUILD RUN chmod 744 bin/start
+ONBUILD RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 ONBUILD CMD bin/start
